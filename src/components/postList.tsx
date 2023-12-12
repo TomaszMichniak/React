@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Post } from '../types/postType';
-import './test.css'
+import '../styles/post.css'
 import { getPosts } from '../requests/postRequest';
 
 export default function Test({id}: {id:number}) {
@@ -16,8 +16,9 @@ export default function Test({id}: {id:number}) {
     return (
         <div>
             {posts ? posts.map((post,index) => 
-                <div key={index}>
-                    <div className='a'>{post.title}</div>
+                <div className='postBox' key={index}>
+                    <div className='postTitle'>{post.title}</div>
+                    <div className='postBody'>{post.body}</div>
                 </div>
             ) : null}
         </div>
