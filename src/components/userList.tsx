@@ -1,49 +1,45 @@
-import { getUsers } from '../requests/userRequest';
+import { getUser } from '../requests/userRequest';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '../types/userType';
+import { useParams } from 'react-router-dom';
 import '../index.css';
 
 export default function UserList() {
-	const [users, setUser] = useState<User[] | null>(null);
+	const [user, setUser] = useState<User | null>(null);
+	let { userId } = useParams<{ userId: string }>();
+	if (userId === undefined) {
+		throw new Error('undefined Parms');
+	}
+	const userIdNumber = Math.abs(parseInt(userId));
 	useEffect(() => {
 		(async () => {
-			const data = await getUsers();
+			const data = await getUser(userIdNumber);
 			setUser(data);
 		})();
 	});
 
 	return (
-		<div className='overflow-x-auto'>
-			<table className='min-w-full table-auto border text-center '>
-				<thead>
-					<tr className='border'>
-						<th> Id</th>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{users
-						? users.map((user, index) => (
-								<tr className='border hover:bg-blue-500 '>
-									<td>{user.id}</td>
-									<td className='border'>{user.name}</td>
-									<td className='border'>{user.email}</td>
-									<td>
-										<Link
-											to={`user/${user.id}/posts`}
-											className='btn btn-xs btn-active btn-neutral join-item'
-										>
-											Posts
-										</Link>
-									</td>
-								</tr>
-						  ))
-						: null}
-				</tbody>
-			</table>
+		<div className='h-screen flex items-center justify-center'>
+			{user && (
+				<div className=' bg-white  max-w-sm rounded overflow-hidden shadow-lg'>
+					<div className='px-6 py-4'>
+						<div className='font-bold text-xl mb-2'>{user.name}</div>
+						<p className='text-gray-700 text-base'>{user.username}</p>
+						<p className='text-gray-700 text-base'>{user.email}</p>
+						<p className='text-gray-700 text-base'>{user.phone}</p>
+						<p className='text-gray-700 text-base'>{user.website}</p>
+						<div className='px-6 pt-4 pb-2'>
+							<Link
+								to={`/`}
+								className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'
+							>
+								Post
+							</Link>
+						</div>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }

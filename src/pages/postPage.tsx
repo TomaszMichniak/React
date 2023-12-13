@@ -1,4 +1,4 @@
-import Post from '../components/postList';
+import PostList from '../components/postList';
 export default function PostPage() {
-	return <Post />;
+	return <PostList />;
 }

@@ -7,6 +7,6 @@ export function getPosts() {
 }
 export async function getUsersPost(userId: number) {
 	return fetch(
-		`https://jsonplaceholder.typicode.com/posts?usersId=${userId}`
+		`https://jsonplaceholder.typicode.com/posts?userId=${userId}`
 	).then((response) => response.json());
 }

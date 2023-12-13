@@ -5,11 +5,10 @@
 html {
 	min-height: 100vh;
 
-	background-color: #4158d0;
-	background-image: linear-gradient(
-		55deg,
-		#4158d0 0%,
-		#5070c8 46%,
-		#83a7ee 100%
+	background: rgb(64, 105, 205);
+	background: radial-gradient(
+		circle,
+		rgba(64, 105, 205, 1) 0%,
+		rgba(124, 125, 228, 1) 100%
 	);
 }
