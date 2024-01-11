@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Todo } from "../types/todoType";
 import { useParams } from "react-router";
-import { getUsersTodos } from "../requests/todoRequest";
+import { changeCompleted, getUsersTodos } from "../requests/todoRequest";
 import { deleteTodo, createTodo } from "../requests/todoRequest";
 import { Link, useNavigate } from "react-router-dom";
 import TodoForm from "./todoForm";
+import { BlobOptions } from "buffer";
 
 export default function TodoList() {
   const [todos, setTodos] = useState<Todo[] | null>(null);
@@ -30,9 +31,18 @@ export default function TodoList() {
 
   const handleCreateTodo = async (newTodo: Todo) => {
       const createdTodo = await createTodo(newTodo);
-      console.log("New todo created:", createdTodo);
       setTodos((prevState) => (prevState ? [ createdTodo,...prevState] : [createdTodo]));
   };
+
+  
+  const handeleDone= async (todoId:number,completed:boolean)=>{
+    await changeCompleted(todoId,completed).then(()=>
+      setTodos((prevState)=>{
+        return prevState?.map((todo)=>
+        todo.id===todoId?{...todo,completed: !completed} : todo)??[]
+      })
+      );
+  }
 
   const navigate = useNavigate();
 
@@ -48,11 +58,13 @@ export default function TodoList() {
           {todos?.map((todo, index) => (
             <div className="flex mb-4 items-center">
               <p className="w-full text-grey-darkest"> {todo.title}</p>
-              {!todo.completed && (
-                <button className="flex-no-shrink p-2 ml-4 mr-2 border-2 bg-green-400 rounded-full">
+              
+                <button
+                onClick={()=>handeleDone(todo.id,todo.completed)}
+                 className={todo.completed?  "flex-no-shrink p-2 ml-4 mr-2 border-2 bg-green-400 rounded-full" :
+                "flex-no-shrink p-2 ml-4 mr-2 border-2 hover:bg-green-400 rounded-full "}>
                   Done
                 </button>
-              )}
               <button
                 onClick={() => handleDelete(todo.id)}
                 className="flex-no-shrink p-2 ml-2 border-2 rounded-full bg-blue-400"

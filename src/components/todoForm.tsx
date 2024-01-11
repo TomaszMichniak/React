@@ -29,16 +29,11 @@ export default function TodoForm({ user, onCreateTodo }: TodoFormProps) {
   const handleCreateTodo = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      await onCreateTodo(newTodo); // Przekazuje nowe todo do funkcji z rodzica
-      // Wyczyść pole tytułu w stanie
+      await onCreateTodo(newTodo);
       setNewTodo((prevTodo) => ({
         ...prevTodo,
         title: "",
       }));
-    } catch (error) {
-      console.error("Error creating todo:", error);
-    }
   };
 
   return (
@@ -56,7 +51,7 @@ export default function TodoForm({ user, onCreateTodo }: TodoFormProps) {
           type="submit"
           className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal"
         >
-          Add
+          Submit
         </button>
       </div>
     </form>
