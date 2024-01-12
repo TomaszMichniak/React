@@ -17,6 +17,7 @@ export default function PostList() {
 			setPosts(data);
 		})();
 	}, []);
+	const handle = () => {};
 	const handleButtonClick = (postId: number) => {
 		setShowCommentsMap((prev) => ({
 			...prev,
