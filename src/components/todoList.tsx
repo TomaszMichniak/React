@@ -50,37 +50,42 @@ export default function TodoList() {
 	const navigate = useNavigate();
 
 	return (
-		<div className='h-100 w-full flex items-center justify-center bg-teal-lightest font-sans'>
-			<div className='bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg'>
-				<div className='mb-4'>
-					<h1 className='text-grey-darkest'>Todo List</h1>
-					<TodoForm user={userIdNumber} onCreateTodo={handleCreateTodo} />
-					<button onClick={() => navigate(-1)}>Go back</button>
-				</div>
-				<div>
-					{todos?.map((todo, index) => (
-						<div className='flex mb-4 items-center'>
-							<p className='w-full text-grey-darkest'> {todo.title}</p>
+		<div className='mx-7'>
+			<div>
+				<TodoForm user={userIdNumber} onCreateTodo={handleCreateTodo} />
+			</div>
 
-							<button
-								onClick={() => handeleDone(todo.id, todo.completed)}
-								className={
-									todo.completed
-										? 'flex-no-shrink p-2 ml-4 mr-2 border-2 bg-green-400 rounded-full'
-										: 'flex-no-shrink p-2 ml-4 mr-2 border-2 hover:bg-green-400 rounded-full '
-								}
-							>
-								Done
-							</button>
-							<button
-								onClick={() => handleDelete(todo.id)}
-								className='flex-no-shrink p-2 ml-2 border-2 rounded-full bg-red-500 '
-							>
-								Remove
-							</button>
-						</div>
-					))}
-				</div>
+			<div className='my-8'>
+				{todos?.map((todo, index) => (
+					<div className='flex mb-5 items-center border-b-2 border-gray-500'>
+						<p className='w-full text-grey-darkest'> {todo.title}</p>
+
+						<button
+							onClick={() => handeleDone(todo.id, todo.completed)}
+							className='flex-no-shrink p-2 ml-4 mr-2 rounded-full'
+						>
+							{todo.completed ? (
+								<img
+									src='/icons/doneIconGreen.svg'
+									alt='Done'
+									className='w-8'
+								/>
+							) : (
+								<img
+									src='/icons/doneIconGray.svg'
+									alt='Not Done'
+									className='w-8'
+								/>
+							)}
+						</button>
+						<button
+							onClick={() => handleDelete(todo.id)}
+							className='flex-no-shrink p-2 ml-2 rounded-full '
+						>
+							<img src='/icons/bin.svg' alt='Bin' className='w-8' />
+						</button>
+					</div>
+				))}
 			</div>
 		</div>
 	);

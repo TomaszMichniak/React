@@ -10,3 +10,14 @@ export async function createComment(comment: Comment) {
 		.post(`https://jsonplaceholder.typicode.com/comments`, comment)
 		.then((response) => response.data);
 }
+export async function editComment(comment: Comment) {
+	return await axios.put(
+		`https://jsonplaceholder.typicode.com/comments/${comment.id}`,
+		comment
+	);
+}
+export async function deleteComment(commentId: number) {
+	return await axios.delete(
+		`https://jsonplaceholder.typicode.com/comments/${commentId}`
+	);
+}

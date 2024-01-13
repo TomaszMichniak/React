@@ -47,7 +47,7 @@ export default function TodoForm({ user, onCreateTodo }: TodoFormProps) {
 				/>
 				<button
 					type='submit'
-					className='flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal'
+					className='flex-no-shrink shadow bg-white p-2 border-2 rounded text-teal  '
 				>
 					Submit
 				</button>
