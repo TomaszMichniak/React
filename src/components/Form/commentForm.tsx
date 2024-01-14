@@ -60,6 +60,11 @@ export default function CommentForm({
 		setEmail('');
 		setBody('');
 	};
+	const handleCloseEditMode=()=>{
+		closeEditMode(false)
+		setEmail('');
+		setBody('');
+	}
 
 	return (
 		<form
@@ -92,7 +97,7 @@ export default function CommentForm({
 			{editingMode && (
 				<button
 					className='w-full bg-teal p-2 my-2 border-2 rounded rounded'
-					onClick={() => closeEditMode(false)}
+					onClick={() => handleCloseEditMode()}
 				>
 					Cancel
 				</button>
