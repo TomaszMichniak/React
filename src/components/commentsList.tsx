@@ -70,19 +70,19 @@ export default function CommentsList({ postId }: { postId: number }) {
 				commentAdd={handleCommentCreate}
 				commentEdit={handleCommentEdit}
 			></CommentForm>
-			{editMode && (
-				<button onClick={() => toogleEditMode(false)}>Exit Edit</button>
-			)}
+
 			{comments?.map((comment, index) => (
 				<div key={index} className=' border-b-4'>
+					<div className='flex items-center'>
+						<button className='ml-auto' onClick={() => handleEditMode(comment)}>
+							<img src='/icons/editIcon.svg' alt='Edit' className='w-5' />
+						</button>
+						<button className='ml-1' onClick={() => handleDelete(comment.id)}>
+							<img src='/icons/bin.svg' alt='Bin' className='w-5' />
+						</button>
+					</div>
 					<p className='font-bold'>{comment.email}</p>
 					<p className='text-sm text-gray-700'>{comment.body}</p>
-					<button onClick={() => handleEditMode(comment)}>
-						<img src='/icons/editIcon.svg' alt='Edit' className='w-5' />
-					</button>
-					<button onClick={() => handleDelete(comment.id)}>
-						<img src='/icons/bin.svg' alt='Bin' className='w-5' />
-					</button>
 				</div>
 			))}
 		</div>

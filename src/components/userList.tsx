@@ -22,9 +22,9 @@ export default function UserList() {
 	return (
 		<div className=''>
 			{user && (
-				<div className=' bg-white  max-w-sm rounded overflow-hidden shadow-lg'>
-					<div className='px-6 py-4'>
-						<div className='font-bold text-xl mb-2'>{user.name}</div>
+				<div className=' bg-white  rounded-2xl border-2 shadow overflow-hidden '>
+					<div className='max-w-xs ml-auto mr-auto px-6 py-4'>
+						<div className=' font-bold text-xl mb-2'>{user.name}</div>
 						<p className='text-gray-700 text-base'>{user.username}</p>
 						<p className='text-gray-700 text-base'>{user.email}</p>
 						<p className='text-gray-700 text-base'>{user.phone}</p>

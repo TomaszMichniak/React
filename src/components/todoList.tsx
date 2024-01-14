@@ -50,14 +50,17 @@ export default function TodoList() {
 	const navigate = useNavigate();
 
 	return (
-		<div className='mx-7'>
+		<div className=''>
 			<div>
 				<TodoForm user={userIdNumber} onCreateTodo={handleCreateTodo} />
 			</div>
 
-			<div className='my-8'>
+			<div className='p-3 mt-3  bg-white rounded-2xl border-2 shadow'>
 				{todos?.map((todo, index) => (
-					<div className='flex mb-5 items-center border-b-2 border-gray-500'>
+					<div
+						key={index}
+						className='flex mb-5 items-center border-b-2 border-gray-500'
+					>
 						<p className='w-full text-grey-darkest'> {todo.title}</p>
 
 						<button

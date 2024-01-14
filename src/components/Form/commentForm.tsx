@@ -33,6 +33,9 @@ export default function CommentForm({
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		if (email == '' || body == '') {
+			return;
+		}
 		let data: Comment;
 		if (editingMode) {
 			data = {
@@ -43,6 +46,7 @@ export default function CommentForm({
 				body: body ?? '',
 			};
 			commentEdit(data);
+			closeEditMode(false);
 		} else {
 			data = {
 				id: id ?? 0,
@@ -53,6 +57,8 @@ export default function CommentForm({
 			};
 			commentAdd(data);
 		}
+		setEmail('');
+		setBody('');
 	};
 
 	return (

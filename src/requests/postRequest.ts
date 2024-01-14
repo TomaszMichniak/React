@@ -1,12 +1,8 @@
 import { Post } from '../types/postType';
+import axios from 'axios';
 
-export function getPosts() {
-	return fetch('https://jsonplaceholder.typicode.com/posts').then((response) =>
-		response.json()
-	);
-}
-export async function getUsersPost(userId: number) {
-	return fetch(
-		`https://jsonplaceholder.typicode.com/posts?userId=${userId}`
-	).then((response) => response.json());
+export async function getPosts() {
+	return await axios
+		.get(`https://jsonplaceholder.typicode.com/posts`)
+		.then((response) => response.data);
 }

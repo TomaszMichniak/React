@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Post } from '../types/postType';
 import { getPosts } from '../requests/postRequest';
-import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import '../index.css';
 import CommentsList from './commentsList';
@@ -14,10 +13,9 @@ export default function PostList() {
 	useEffect(() => {
 		(async () => {
 			const data = await getPosts();
-			setPosts(data);
+			setPosts(data.sort(() => Math.random() - 0.5));
 		})();
 	}, []);
-	const handle = () => {};
 	const handleButtonClick = (postId: number) => {
 		setShowCommentsMap((prev) => ({
 			...prev,
@@ -26,9 +24,12 @@ export default function PostList() {
 	};
 	return (
 		<div className='mt-10'>
-			{posts?.slice(0, 20).map((post, index) => (
-				<div className='flex bg-white  mt-6 mx-auto items-center justify-center rounded overflow-hidden shadow-lg'>
-					<div key={index} className='px-6 py-4 '>
+			{posts?.slice(0, 10).map((post, index) => (
+				<div
+					key={index}
+					className='flex bg-white  mt-6 mx-auto items-center justify-center rounded overflow-hidden shadow-lg'
+				>
+					<div className='px-6 py-4 '>
 						<div className='font-bold text-xl mb-2'>{post.title}</div>
 						<p className='text-gray-700 text-base'>{post.body}</p>
 						<div className='px-6 pt-4 pb-2'>
