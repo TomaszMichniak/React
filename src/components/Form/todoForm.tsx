@@ -24,7 +24,7 @@ export default function TodoForm({ user, onCreateTodo }: TodoFormProps) {
 
 	const handleCreateTodo = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
+		if (newTodo.title == '') return;
 		await onCreateTodo(newTodo);
 		setNewTodo((prevTodo) => ({
 			...prevTodo,
