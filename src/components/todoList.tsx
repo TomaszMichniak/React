@@ -3,7 +3,6 @@ import { Todo } from '../types/todoType';
 import { useParams } from 'react-router';
 import { changeCompleted, getUsersTodos } from '../requests/todoRequest';
 import { deleteTodo, createTodo } from '../requests/todoRequest';
-import { useNavigate } from 'react-router-dom';
 import TodoForm from './Form/todoForm';
 
 export default function TodoList() {
@@ -46,8 +45,6 @@ export default function TodoList() {
 			})
 		);
 	};
-
-	const navigate = useNavigate();
 
 	return (
 		<div className=''>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import UserPage from './pages/userPage';
 import PostPage from './pages/postPage';

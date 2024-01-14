@@ -1,4 +1,3 @@
-import { User } from '../types/userType';
 import axios from 'axios';
 
 export async function getUser(userId: number) {

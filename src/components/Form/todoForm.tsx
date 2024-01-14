@@ -1,6 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { createTodo } from '../../requests/todoRequest';
-import { number } from 'yargs';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { Todo } from '../../types/todoType';
 
 interface TodoFormProps {
